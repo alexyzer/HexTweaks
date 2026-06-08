@@ -1,11 +1,13 @@
 {
-  "required": true,
-  "package": "net.examplemod.mixin.forge",
+  "required": false,
+  "package": "net.walksanator.hextweaks.forge.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
   ],
   "mixins": [
+    "MixinAccelerateFermentation",
+    "SealTimeAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

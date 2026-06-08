@@ -1,8 +1,10 @@
 package net.walksanator.hextweaks.forge;
 
+import dev.architectury.platform.Platform;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -11,6 +13,7 @@ import net.walksanator.hextweaks.HexTweaks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.walksanator.hextweaks.HexTweaksRegistry;
+import net.walksanator.hextweaks.casting.MindflayRegistry;
 
 @Mod(HexTweaks.MOD_ID)
 @Mod.EventBusSubscriber(modid = HexTweaks.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -20,6 +23,15 @@ public class HexTweaksForge {
         EventBuses.registerModEventBus(HexTweaks.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         HexTweaks.init();
         HexTweaksRegistry.INSTANCE.init();
+        if (true/*Platform.isModLoaded("spectrum") && Platform.isModLoaded("connectormod")*/) {
+            MindflayRegistry.INSTANCE.put(
+                    new ResourceLocation(
+                            HexTweaks.MOD_ID,
+                            "fermentation_timeskip"
+                    ),
+                    AccelerateFlay.INSTANCE::skip12hours
+            );
+        }
     }
 
     @SubscribeEvent

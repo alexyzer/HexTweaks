@@ -74,16 +74,16 @@ object MindflayRegistry {
     }
 
     fun register() {
-        if (Platform.isModLoaded("hexal")) {
-            put(
-                ResourceLocation(net.walksanator.hextweaks.HexTweaks.MOD_ID,"slipway/create"),
-                MindflaySlipwayRitual::createSlipway
-            )
-            put(
-                ResourceLocation(net.walksanator.hextweaks.HexTweaks.MOD_ID,"slipway/destroy"),
-                MindflaySlipwayRitual::burstSlipway
-            )
-        }
+        //if (Platform.isModLoaded("hexal")) {
+        //    put(
+        //        ResourceLocation(net.walksanator.hextweaks.HexTweaks.MOD_ID,"slipway/create"),
+        //        MindflaySlipwayRitual::createSlipway
+                //    )
+        //    put(
+        //        ResourceLocation(net.walksanator.hextweaks.HexTweaks.MOD_ID,"slipway/destroy"),
+        //        MindflaySlipwayRitual::burstSlipway
+                //    )
+        //}
         put(
             ResourceLocation(net.walksanator.hextweaks.HexTweaks.MOD_ID, "restock"),
             RestockingRitual::restockVillager

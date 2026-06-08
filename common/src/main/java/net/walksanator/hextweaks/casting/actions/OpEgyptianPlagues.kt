@@ -6,6 +6,7 @@ import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
 import at.petrak.hexcasting.api.casting.getDoubleBetween
 import at.petrak.hexcasting.api.casting.getIntBetween
 import at.petrak.hexcasting.api.casting.getLivingEntityButNotArmorStand
+import at.petrak.hexcasting.api.casting.getPositiveDouble
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.mishaps.MishapDisallowedSpell
 import at.petrak.hexcasting.api.casting.mishaps.MishapInvalidIota
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.LivingEntity
 import net.walksanator.hextweaks.HexTweaks
 import ram.talia.moreiotas.api.casting.iota.StringIota
 import kotlin.jvm.optionals.getOrNull
+import kotlin.math.max
 import kotlin.math.pow
 
 object OpEgyptianPlagues : SpellAction {
@@ -32,7 +34,7 @@ object OpEgyptianPlagues : SpellAction {
         /*Blacklist*/ if(!HexTweaks.getCONFIG().isNadithEffectAllowed(effectString)) throw MishapDisallowedSpell()
 
         val mobEffect = BuiltInRegistries.MOB_EFFECT.get(effectResLoc) ?: throw MishapInvalidIota.of(argEffect,3,"mobeffect")
-        val durationTicks = (args.getDoubleBetween(2, 0.05, 1000000.0, argc)*20).toInt()
+        val durationTicks = max((args.getPositiveDouble(2, argc)*20).toInt(),1)
         val potency =  args.getIntBetween(3,1,5,argc)
         val mobEffInst = MobEffectInstance(mobEffect,durationTicks,potency-1)
 
